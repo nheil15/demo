@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styling/design.css">
+    <title>Voter's Panel</title>
+</head>
+
+<body>
+    <div class="container5">
+        <h1>BALLOT</h1>
+        <div class="vote_review">
+        <p>Selected Candidates</p> 
+            <table>
+                <tr>
+                    <th>Position</th>
+                    <th>Candidate</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+        </div>
+        <button class="button3" id="change_voting" onclick="history.back()">Change Vote</button>
+        <button class="button3" id="submit_vote" onclick="submitVote()">Submit Vote</button>
+    </div>
+    
+    <script>
+        async function submitVote() {
+            const voterID = sessionStorage.getItem('voterID'); 
+            if (!voterID) {
+                alert("⚠️ Voter not logged in. Please log in again.");
+                window.location.href = 'voter.html';  
+                return;
+            }
+
+            const selectedCandidates = JSON.parse(localStorage.getItem('selectedCandidates')) || [];
+            
+            const voteData = {
+                voterID: voterID,
+                candidates: selectedCandidates
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/submit_vote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(voteData)
+                });
+
+                if (response.ok) {
+                    const updateResponse = await fetch('http://127.0.0.1:5000/update_voter_status', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ voterID: voterID, hasVoted: true }) 
+                    });
+
+                    if (updateResponse.ok) {
+                        alert('✅ Vote submitted successfully! Redirecting...');
+                        localStorage.removeItem('selectedCandidates');  
+                        window.location.href = 'voting_home.html';  
+                    } else {
+                        alert('⚠️ Error updating vote status. Please try again.');
+                    }
+                } else {
+                    alert('⚠️ Error submitting vote. Please try again.');
+                }
+            } catch (error) {
+                console.error('⚠️ Error submitting vote:', error);
+                alert('⚠️ Server error. Try again later.');
+            }
+        }       
+
+        document.getElementById("submit_vote").addEventListener("click", async function() {
+            await submitVote();
+        });
+    </script>
+    
+    
+    <script src="/script_files/script3.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styling/design.css">
+    <title>Voter's Panel</title>
+</head>
+<body>
+    <header>
+        <h1>e-BOTO</h1>
+        <nav>
+            <ul class="nav_links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container3">
+        <h1>Your Information</h1>
+        <div class="table_container">
+            <table class="voterinfo-table">
+                <tr>
+                  <th>VoterID</th>
+                  <th>Name</th>
+                  <th>Birthdate</th>
+                  <th>Address</th>
+                  <th>HasVoted</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="button_group1">
+        <button class="proceed_voting" id="proceed_voting" onclick="window.location.href='ballot.html'">Vote</button>
+        <button class="button2" id="logout">Logout</button>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            let voterID = sessionStorage.getItem("voterID");
+
+            if (!voterID) {
+                alert("⚠️ No voter logged in! Redirecting to login...");
+                window.location.href = "voter.html"; 
+                return;
+            }
+
+            try {
+                let response = await fetch(`http://127.0.0.1:5000/voter/${voterID}`);
+                let voter = await response.json();
+
+                if (response.ok) {
+                    let tableRow = document.querySelector("table tr:nth-child(2)");
+                    tableRow.cells[0].textContent = voter.voterID;
+                    tableRow.cells[1].textContent = voter.name;
+                    tableRow.cells[2].textContent = voter.birthdate;
+                    tableRow.cells[3].textContent = voter.address;
+                    tableRow.cells[4].textContent = voter.hasVoted ? "Yes" : "No";
+
+                    if (voter.hasVoted) {
+                        let voteButton = document.getElementById("proceed_voting");
+                        voteButton.disabled = true;  
+                        voteButton.style.backgroundColor = "#ccc"; 
+                        voteButton.style.cursor = "not-allowed";   
+                        voteButton.onclick = function() {
+                            alert("✅ You have already voted! Voting is disabled.");
+                        };
+                    }
+                } else {
+                    alert(voter.message || "⚠️ Error fetching voter data.");
+                }
+            } catch (error) {
+                console.error("⚠️ Error fetching voter info:", error);
+                alert("⚠️ Server error. Please try again later.");
+            }
+        });
+
+        document.getElementById("logout").addEventListener("click", function() {
+            sessionStorage.removeItem("voterID");
+            window.location.href = "voter.html";
+        });
+        </script>
+        
+</body>
+</html>

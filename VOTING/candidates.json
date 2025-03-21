@@ -1,0 +1,48 @@
+{
+    "candidates": {
+        "mayor": [
+            {
+                "candidateID": "C1001",
+                "name": "Mary Grace Piattos",
+                "votecount": 0
+            },
+            {
+                "candidateID": "C1002",
+                "name": "Alice Guo",
+                "votecount": 0
+            },
+            {
+                "candidateID": "C1003",
+                "name": "Liza Marcos",
+                "votecount": 0
+            }
+        ],
+        "councilor": [
+            {
+                "candidateID": "C2001",
+                "name": "Harry Roque",
+                "votecount": 0
+            },
+            {
+                "candidateID": "C2002",
+                "name": "General Torre",
+                "votecount": 0
+            },
+            {
+                "candidateID": "C2003",
+                "name": "Manny Pacquiao",
+                "votecount": 0
+            },
+            {
+                "candidateID": "C2004",
+                "name": "Mocha Uson",
+                "votecount": 0
+            },
+            {
+                "candidateID": "C2005",
+                "name": "Bong Go",
+                "votecount": 0
+            }
+        ]
+    }
+}

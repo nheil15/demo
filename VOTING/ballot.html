@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styling/design.css">
+    <title>Voter's Panel</title>
+</head>
+
+<body>
+    <div class="container4">
+        <h1>BALLOT</h1><br>
+        <form id="ballotForm">
+            <label for="mayor" class="section-title">Mayor</label>
+            <div id="mayorCandidates" class="candidates"></div>
+
+            <label for="councilor" class="section-title">Councilor</label>
+            <div id="councilorCandidates" class="candidates"></div>
+            
+            <input type="submit" value="Next" class="button3">
+        </form>
+    </div>
+    <button class="button2" id="cancel_voting" onclick="history.back()">Cancel</button>
+    <script src="/script_files/script2.js"></script>
+</body>
+
+</html>

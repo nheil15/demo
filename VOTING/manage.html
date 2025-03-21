@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="design.css">
+    <title>Manage Voting</title>
+</head>
+<body>
+    <header>
+        <h1>e-BOTO Voting Management</h1>
+        <nav>
+            <ul class="nav_links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="officer.html">Back to Officer Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container2">
+        <h2>Manage Voting</h2>
+        
+        <div>
+            <p><strong>Voting Status:</strong> <span id="votingStatus">Loading...</span></p>
+            <button onclick="openVoting()">Open Voting</button>
+            <button onclick="closeVoting()">Close Voting</button>
+            <button onclick="showVoteCount()">Show Vote Count</button>
+        </div>
+    </div>
+
+    <script src="manage.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styling/design.css">
+    <title>Voter Tab</title>
+</head>
+<body>
+    <header>
+        <h1>e-BOTO</h1>
+        <nav>
+            <ul class="nav_links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container2">
+        <form id="loginForm">
+            <label for="voterid">Voter ID:</label><br>
+            <input type="text" id="voterid" name="voterid" required><br>
+            <label for="voterpin">PIN:</label><br>
+            <input type="password" id="voterpin" name="voterpin" required><br>
+            <input type="submit" value="Login" class="button3">
+        </form>
+        <p id="loginMessage"></p>
+    </div>
+    <button class="backbutton" onclick="window.location.href='index.html'">Back</button>
+
+    <script src="/script_files/script1.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+[
+    {
+        "voterID": "12345",
+        "PIN": "6789",
+        "name": "John Doe",
+        "birthdate": "2000-01-01",
+        "address": "123 Main St",
+        "hasVoted": false
+    },
+    {
+        "voterID": "54321",
+        "PIN": "9876",
+        "name": "Jane Smith",
+        "birthdate": "1995-05-10",
+        "address": "456 Elm St",
+        "hasVoted": false
+    }
+]
